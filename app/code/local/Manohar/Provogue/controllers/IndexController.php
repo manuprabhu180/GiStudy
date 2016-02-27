@@ -6,8 +6,6 @@ class Manohar_Provogue_IndexController extends Mage_Core_Controller_Front_Action
 		//echo 'block';
 		$this->loadLayout();
 		$this->renderLayout();
-		$this->renderLayout();
-		$this->renderLayout();
 
 	}
 	public function UpdateqtyAction(){
