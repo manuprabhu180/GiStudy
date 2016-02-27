@@ -1,0 +1,20 @@
+<?xml version="1.0"?> 
+<layout version="0.1.0">   
+  <locatore_index_index>  
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>   
+    <reference name="content">  
+      <block type="locatore/index" name="locatore_index" template="locatore/index.phtml"/>
+    </reference>   
+  </locatore_index_index>
+  <locatore_index_select>  
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>   
+    <reference name="content">  
+      <block type="locatore/index" name="locatore_index1" template="locatore/index.phtml"/>
+    </reference>   
+  </locatore_index_select>
+</layout>   
+	

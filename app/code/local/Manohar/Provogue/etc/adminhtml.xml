@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<menu>
+		<main_menu  module="provogue">
+           <title>Microsites Email Banner</title>
+               <sort_order>40</sort_order>
+               <children>
+               <sub_menu1 translate="title" >
+                    <title>Banner Info</title>
+                    <sort_order>10</sort_order>
+                    <action>provogue/adminhtml_index</action>
+               </sub_menu1>
+               <!-- <sub_menu2 translate="title">
+                    <title>Banner Image</title>
+                    <sort_order>20</sort_order>
+                    <action></action>
+               </sub_menu2>
+                --></children>
+       </main_menu>
+	</menu>
+</config>
+<!-- <?xml version="1.0"?>
+ 
+ -->

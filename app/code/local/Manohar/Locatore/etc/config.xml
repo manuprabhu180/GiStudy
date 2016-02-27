@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<config>
+  <modules><!--initialize configuration for module-->
+    <Manohar_Locatore><!--package_modulename-->
+      <version>0.1.2</version><!--version of module-->
+    </Manohar_Locatore>
+  </modules>
+  <frontend><!--configure frontend routers(controllers)-->
+    <routers><!--controllers-->
+      <locatore><!--just a node name, preferably module name --> 
+        <use>standard</use><!--use for frontend-->
+          <args>
+            <module>Manohar_Locatore</module>
+            <frontName>locatore</frontName>
+          </args>
+      </locatore>
+      <checkout>
+                <args>
+                    <modules>
+                        <Manohar_Locatore before="Mage_Checkout">Manohar_Locatore_Checkout</Manohar_Locatore>
+                    </modules>
+                </args>
+            </checkout>
+      <!-- <sales>
+        <args>
+          <modules>
+            <Manohar_Locatore before="Mage_Sales">Manohar_Locatore</Manohar_Locatore>
+          </modules>
+        </args>
+      </sales> -->
+      <!-- <wishlist>
+        <args>
+          <modules>
+            <Manohar_Locatore before="Mage_Wishlist">Manohar_Locatore</Manohar_Locatore>  
+          </modules>
+        </args>
+      </wishlist>  -->
+      <customer>
+        <args>
+          <modules>
+            <Manohar_Locatore before="Mage_Customer">Manohar_Locatore</Manohar_Locatore>
+          </modules>
+        </args>
+      </customer>     
+    </routers>
+      <layout>
+          <updates>
+            <locatore>
+              <file>locatore.xml</file>
+            </locatore>
+          </updates>
+        </layout>
+  </frontend>
+  <global>
+    <!-- <rewrite>        
+             <manohar_locatore_ordercontroller>
+                 <from><![CDATA[#^/sales/order/#]]></from> 
+                 <to>/locatore/order/</to> 
+             </manohar_locatore_ordercontroller>
+    </rewrite> -->
+    <!-- <rewrite>        
+             <manohar_locatore_wishlistcontroller>
+                 <from><![CDATA[#^/wishlist/index/#]]></from> 
+                 <to>/locatore/wishlist/</to> 
+             </manohar_locatore_wishlistcontroller>
+    </rewrite> -->
+    <models>
+      <locatore>
+        <class>Manohar_locatore_Model</class>
+        <resourceModel>locatore_mysql4</resourceModel>
+      </locatore>
+      <locatore_mysql4>
+      <class>Manohar_Locatore_Model_Mysql4</class>
+      <entities>
+         <locatore>
+             <table>locatore</table>
+         </locatore>
+      </entities>
+    </locatore_mysql4>
+    <wishlist>
+        <rewrite>
+          <wishlist>Manohar_Locatore_Model_Wishlist</wishlist>
+        </rewrite>
+      </wishlist>
+      <sales>
+        <rewrite>
+          <order>Manohar_Locatore_Model_Order</order>
+        </rewrite>
+      </sales>
+    </models>
+     <blocks>
+      <locatore>
+          <class>Manohar_Locatore_Block</class>
+      </locatore>
+    </blocks>
+  <resources>
+      <locatore_setup>
+        <setup>
+          <module>Manohar_Locatore</module>
+          <class>Mage_Eav_Model_Entity_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </locatore_setup>
+      <locatore_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </locatore_write>
+      <locatore_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </locatore_read>
+    </resources>
+  </global>
+</config> 

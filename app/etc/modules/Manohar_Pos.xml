@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Manohar_Pos>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </Manohar_Pos>
+  </modules>
+</config>

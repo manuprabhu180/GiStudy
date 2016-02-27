@@ -1,0 +1,221 @@
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        UpdateQty;
+        jQuery('.ajaxAddToCart').hide();
+        jQuery('.closeAjax').hide();
+        jQuery('.successMessage').hide();
+        jQuery('.successMessageClose').hide();
+        jQuery('.productOptions').hide();
+        jQuery('.btn-cart').addClass('custom-btn');
+        jQuery('.custom-btn').click(function(){
+            var serialize = jQuery('#product_addtocart_form').serialize();
+            jQuery.ajax({
+                url:'<?php echo Mage::getBaseUrl()?>locatore/checkout_cart/add',
+                data:serialize,
+                dataType:'json',
+                success:function(res){
+                    jQuery('.successMessage').html(res.result);
+                    jQuery('.successMessage').show();
+                    jQuery('.successMessageClose').show();
+                    UpdateQty();
+                }
+            })
+        })
+
+        jQuery('.skip-cart').click(function(){
+            jQuery.ajax({
+                url:'<?php echo Mage::getBaseUrl(); ?>provogue/index/Updatecart',
+                dataType : 'json',
+                success : function(res){
+                    jQuery('.ajaxAddToCart').html(res.result);
+                    jQuery('.ajaxAddToCart').show();
+                    jQuery('.closeAjax').show();
+                }
+            })
+            
+        })
+
+        jQuery('.closeAjax').click(function(){
+            jQuery(this).hide();
+            jQuery('.ajaxAddToCart').hide();
+        })
+
+        jQuery('.successMessageClose').click(function(){
+            jQuery(this).hide();
+            jQuery('.successMessage').hide();
+        })
+
+
+        
+    })
+</script>
+<script type="text/javascript">
+        function ajaxProductUrl(url){
+            jQuery.ajax({
+                url:url,
+                dataType:'json',
+                success:function(res){
+                    jQuery('.successMessage').html(res.result);
+                    jQuery('.successMessage').show();
+                    UpdateQty();
+                }
+            })
+        }
+</script>
+<script type="text/javascript">
+    function UpdateQty(){
+        jQuery.ajax({
+            url:'<?php echo Mage::getBaseUrl(); ?>provogue/index/updateQty',
+            dataType : 'json',
+            success : function(res){
+                jQuery('.custom-count').html(res.result);
+            }
+        })
+    }
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+
+        jQuery('.btn-remove2').on('click',function(e){
+            e.preventDefault();
+     
+        })
+    })
+</script>
+<script type="text/javascript">
+    function productOptions(id){
+        jQuery.ajax({
+            url : "<?php echo Mage::getBaseUrl();?>provogue/index/productOption",
+            data : 'id='+id,
+            dataType:'json',
+            succesds : function(res){
+                jQuery('.ajaxAddToCart').html(res.option);
+                jQuery('.ajaxAddToCart').show();
+            }
+        })
+    }
+</script>
+
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
+?>
+
+<?php
+    $_cartQty = $this->getSummaryCount();
+    if(empty($_cartQty)) {
+        $_cartQty = 0;
+    }
+?>
+
+<a href="<?php echo $this->helper('checkout/cart')->getCartUrl(); ?>" data-target-element="#header-cart" class="skip-link skip-cart <?php if($_cartQty <= 0): ?> no-count<?php endif; ?>">
+    <span class="icon"></span>
+    <span class="label"><?php echo $this->__('Cart'); ?></span>
+    <span class="count custom-count"><?php echo $_cartQty; ?></span>
+</a>
+
+<!-- <div id="header-cart" class="block block-cart skip-content">
+    <?php //echo $this->getChildHtml('minicart_content');?>
+</div> -->
+
+<!-- <a href="<?php //echo $this->helper('checkout/cart')->getCartUrl(); ?>" data-target-element="#header-cart" class="skip-link skip-cart <?php //if($_cartQty <= 0): ?> no-count<?php //endif; ?>">
+    <span class="icon"></span>
+    <span class="label"><?php //echo $this->__('Cart'); ?></span>
+    <span class="count custom-count"><?php //echo $_cartQty; ?></span>
+</a>
+
+<div id="header-cart" class="block block-cart skip-content">
+    <?php //echo $this->getChildHtml('minicart_content');?>
+</div> -->
+
+ <div class='ajaxAddToCart'>
+    <?php
+         
+        // echo $this->getChildHtml('checkout.cart');
+    ?>
+</div> 
+<div class="closeAjax"><b>X</b></div>
+<div class="successMessage"><b></b></div>
+<div class="successMessageClose"><b></b></div>
+<div class="productOptions"></div>
+<style type="text/css">
+.ajaxAddToCart{
+    width:64%;
+    overflow-y:scroll;
+    border: 1px solid black;
+    position: fixed;
+    z-index: 1000;
+    left: 164px;
+    top: 150px;
+    background-color: #C3E1FF;
+}
+.successMessage{
+    width:30%;
+    border: 1px solid black;
+    position: fixed;
+    z-index: 1000;
+    left: 164px;
+    top: 150px;
+    height: 15%;
+    background-color: #C3E1FF;
+}
+.closeAjax{
+        width: 20px;
+    color: red;
+    position: fixed;
+    z-index: 1000;
+    left: 952px;
+    top: 132px;
+    background-color: black;
+    padding-left: 5px;
+    border-radius: 10px 10px;
+    cursor: pointer;
+
+}
+.successMessageClose{
+        width: 20px;
+    color: red;
+    position: fixed;
+    z-index: 1000;
+    left: 952px;
+    top: 132px;
+    background-color: black;
+    padding-left: 5px;
+    border-radius: 10px 10px;
+    cursor: pointer;
+
+}
+/*#shopping-cart-table{
+    width: 100%;
+}*/
+</style> 

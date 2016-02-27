@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Manohar_Provogue>
+			<version>0.1.0</version>
+		</Manohar_Provogue>
+	</modules>
+	<admin>
+		<routers>
+			<provogue>
+				<use>admin</use>
+	          	<args>
+	            <module>Manohar_Provogue</module>
+	            <frontName>provogue</frontName>
+	          </args>
+			</provogue>
+		</routers>
+		
+	</admin>
+	<frontend>
+		<routers>
+			<provogue>
+				<use>standard</use>
+	          	<args>
+	            <module>Manohar_Provogue</module>
+	            <frontName>provogue</frontName>
+	          </args>
+			</provogue>
+		</routers>
+		<layout>
+			<updates>
+				<provogue>
+					<file>provogue.xml</file>
+				</provogue>
+			</updates>
+		</layout>
+	</frontend>
+	<global>
+		<blocks>
+	        <provogue>
+	            <class>Manohar_Provogue_Block</class>
+	        </provogue>
+    	</blocks>
+    	<helpers>
+    		<provogue>
+    			<class>Manohar_Provogue_Helper</class>
+    		</provogue>	
+    	</helpers>
+    	<models>
+    		<provogue>
+    			<class>Manohar_Provogue_Model</class>
+    		</provogue>
+    	</models>
+    	<!-- <events>
+    		<admin_session_user_login_success>
+    			<observer>
+    				<modelrewrite>
+    					<type>singleton</type>
+    					<class>Manohar_Modelrewrite_Model_Observer</class>
+    					<method>admin_session_user_login_success</method>
+    				</modelrewrite>
+    			</observer>
+    		</admin_session_user_login_success>
+    	</events> -->
+	</global>
+	<adminhtml>
+		<layout>
+			<updates>
+				<provogue>
+					<file>provogue.xml</file>
+				</provogue>
+			</updates>
+		</layout>
+	</adminhtml>
+
+	
+</config>
